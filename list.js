@@ -5,7 +5,7 @@ const test = () => {
   
     return p
   }
-  export default class AppsList extends HTMLElement {
+  class AppsList extends HTMLElement {
     constructor() {
       super();
     }
@@ -23,6 +23,6 @@ const test = () => {
       this.appendChild(test())
     }
   }
-  
+
 customElements.define('apps-list', AppsList);
   
