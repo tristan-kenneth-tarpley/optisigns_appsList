@@ -21,11 +21,11 @@ class AppsList extends HTMLElement {
     }
   
     connectedCallback() {
+        console.log('testing')
         this.appendChild(test())
     }
 }
 
-console.log('testing')
 
 customElements.define('apps-list', AppsList);
   
