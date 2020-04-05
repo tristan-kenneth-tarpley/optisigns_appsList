@@ -4,8 +4,9 @@ const test = () => {
     p.textContent = 'hello'
   
     return p
-  }
-  class AppsList extends HTMLElement {
+}
+
+class AppsList extends HTMLElement {
     constructor() {
       super();
     }
@@ -22,7 +23,7 @@ const test = () => {
     connectedCallback() {
       this.appendChild(test())
     }
-  }
+}
 
 customElements.define('apps-list', AppsList);
   
