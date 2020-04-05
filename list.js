@@ -8,22 +8,24 @@ const test = () => {
 
 class AppsList extends HTMLElement {
     constructor() {
-      super();
+        super();
     }
   
     static get observedAttributes() {
-      return ['data'];
+        return ['data'];
     }
   
     attributeChangedCallback(value, old, new_val) {
-      console.log('called')
-      console.log(JSON.parse(new_val))
+        console.log('called')
+        console.log(JSON.parse(new_val))
     }
   
     connectedCallback() {
-      this.appendChild(test())
+        this.appendChild(test())
     }
 }
+
+console.log('testing')
 
 customElements.define('apps-list', AppsList);
   
