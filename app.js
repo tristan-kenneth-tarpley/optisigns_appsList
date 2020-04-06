@@ -67,4 +67,4 @@ export default class AppsList extends HTMLElement {
 }
 
 
-customElements.define('apps-list', AppsList);
+//customElements.define('apps-list', AppsList);
