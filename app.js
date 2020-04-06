@@ -36,7 +36,7 @@ const temp_data = [
     }
 ]
 
-class AppsList extends HTMLElement {
+export default class AppsList extends HTMLElement {
     constructor() {
         super();
         this.data = temp_data
