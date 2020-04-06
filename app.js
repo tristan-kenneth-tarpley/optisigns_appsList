@@ -1,16 +1,8 @@
-
-const test = () => {
-    let p = document.createElement('p')
-    p.textContent = 'hello'
-
-    return p
-}
-
 const styles = () => {
     let el = document.createElement('div')
     /*html*/
     el.innerHTML = `
-
+    
     <style>
         * {
             box-sizing : border-box;
@@ -492,6 +484,16 @@ class AppsList extends HTMLElement {
         this.state = {
             active_category: 'all'
         }
+
+        this.data = temp_data
+        let temp_arr = [],
+            categories = [];
+        for (let app of this.data){
+            temp_arr.push(app.category)
+            if (temp_arr.filter(cat=>cat == app.category).length <= 1) categories.push(app.category.toLowerCase())
+        }
+
+        this.categories = [...categories, 'all'].sort()
     }
 
     static get observedAttributes() {
@@ -524,19 +526,19 @@ class AppsList extends HTMLElement {
         /*html*/
         div.innerHTML = `
             <div class="_row">
-                <div class="_col-lg-1 _col-lg-1 _col-sm-12 _col-xs-12"></div>
-                <div id="categories" class="_col-lg-2 _col-md-2 _col-sm-12 _col-xs-12">
+                <div class="_col-lg-1 _col-lg-1 _col-sm-1 _col-xs-12"></div>
+                <div id="categories" class="_col-lg-2 _col-md-2 _col-sm-2 _col-xs-12">
                     <h3><strong>Categories</strong></h3>
                     ${this.categories.map(cat=>{
                         return `<p data-category="${cat}" class="${this.state.active_category == cat ? 'active' : ''} categories__list">${cat}</p>`
                     }).join("")}
                 </div>
-                <div class="_col-lg-9 _col-md-9 _col-sm-12 _col-xs-12">
+                <div class="_col-lg-9 _col-md-9 _col-sm-9 _col-xs-12">
                     <div class="_row">
-                        <div class="_col-lg-8 _col-md-8 _col-sm-12 _col-xs-12">
+                        <div class="_col-lg-8 _col-md-8 _col-sm-8 _col-xs-12">
                             
                         </div>
-                        <div class="_col-lg-4 _col-md-4 _col-sm-12 _col-xs-12">
+                        <div class="_col-lg-4 _col-md-4 _col-sm-4 _col-xs-12">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -551,7 +553,7 @@ class AppsList extends HTMLElement {
                     <div id="apps_list" class="_row">
                         ${data.map(app=>{
                             return(/*html*/`
-                            <div class="_col-lg-4 _col-md-4 _col-sm-6 _col-xs-12">
+                            <div class="_col-lg-4 _col-md-4 _col-sm-4 _col-xs-6">
                                 <a data-category="${app.category}" class="app__link" href="${app.link}">
                                     <div class="card linked_card">
                                         <div class="card-header">
@@ -598,7 +600,7 @@ class AppsList extends HTMLElement {
     }
 
     attributeChangedCallback(value, old, new_val) {
-        this.data = JSON.parse(new_val.items)
+        this.data = JSON.parse(new_val)
 
         let temp_arr = [],
             categories = [];
@@ -612,7 +614,7 @@ class AppsList extends HTMLElement {
     }
 
     connectedCallback() {
-        
+        this.render()
     }
 }
 
